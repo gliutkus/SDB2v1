@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "41942246033",
+    "firebase_url": "https://smartdoorbell-29ac6.firebaseio.com",
+    "project_id": "smartdoorbell-29ac6",
+    "storage_bucket": "smartdoorbell-29ac6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41942246033:android:bfb574531759e576",
+        "android_client_info": {
+          "package_name": "com.example.g.sdb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41942246033-56vdg1mu3266guai0c33sq2h1b9v1t5j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.g.sdb",
+            "certificate_hash": "ee4949ab3d5289a5827865deeedebbd01887c519"
+          }
+        },
+        {
+          "client_id": "41942246033-q165dm83q6oakujv0ddqsn6vghkhk7fp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtEsdQeesh-FwolQYyuaeLCC2lZ8H_sf4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41942246033-q165dm83q6oakujv0ddqsn6vghkhk7fp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
