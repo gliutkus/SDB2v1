@@ -2,12 +2,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashBoard">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <RelativeLayout
+        android:id="@+id/dashboard_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <VideoView
+            android:id="@+id/dashboard_videoview"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:id="@+id/dashboard_btn_microphone"
+            style="@android:style/Widget.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dashboard_videoview"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            app:srcCompat="@drawable/ic_mic_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/dashboard_btn_unlock"
+            style="@android:style/Widget.ImageButton"
+            app:srcCompat="@drawable/ic_lock_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/dashboard_videoview"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp" />
+
+        <ImageButton
+            android:id="@+id/dashboard_btn_emergency"
+            style="@android:style/Widget.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            app:srcCompat="@drawable/ic_warning_black_24dp"
+            android:layout_alignTop="@+id/dashboard_btn_unlock"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
 
 </FrameLayout>
