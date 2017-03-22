@@ -4,10 +4,99 @@
     android:layout_height="match_parent"
     tools:context="fragment.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="settings fragment" />
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/txtView_silentHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="60dp"
+            android:text="Silent Hours" />
+
+        <TextView
+            android:id="@+id/textView_AutomaticLock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="Automatic Lock"
+            android:layout_below="@+id/editText_settings_silentHours"
+            android:layout_alignLeft="@+id/editText_settings_silentHours"
+            android:layout_alignStart="@+id/editText_settings_silentHours" />
+
+        <EditText
+            android:id="@+id/editText_settings_silentHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txtView_silentHours"
+            android:layout_alignStart="@+id/txtView_silentHours"
+            android:layout_below="@+id/txtView_silentHours"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="time"
+            android:inputType="time" />
+
+        <EditText
+            android:id="@+id/editText_settings_autoLockTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_AutomaticLock"
+            android:layout_alignStart="@+id/textView_AutomaticLock"
+            android:layout_below="@+id/textView_AutomaticLock"
+            android:layout_marginTop="22dp"
+            android:ems="10"
+            android:hint="time"
+            android:inputType="time" />
+
+        <EditText
+            android:id="@+id/editText_settings_telephone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="74dp"
+            android:ems="10"
+            android:hint="telephone"
+            android:inputType="phone"
+            android:layout_below="@+id/editText_settings_autoLockTime"
+            android:layout_alignLeft="@+id/editText_settings_autoLockTime"
+            android:layout_alignStart="@+id/editText_settings_autoLockTime" />
+
+        <CheckBox
+            android:id="@+id/checkBox_autoLock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editText_settings_autoLockTime"
+            android:layout_alignBottom="@+id/editText_settings_autoLockTime"
+            android:layout_alignLeft="@+id/checkBox_SilentHours"
+            android:layout_alignStart="@+id/checkBox_SilentHours" />
+
+        <CheckBox
+            android:id="@+id/checkBox_SilentHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/editText_settings_silentHours"
+            android:layout_marginLeft="53dp"
+            android:layout_marginStart="53dp"
+            android:layout_toEndOf="@+id/editText_settings_silentHours"
+            android:layout_toRightOf="@+id/editText_settings_silentHours" />
+
+        <TextView
+            android:id="@+id/textView_emergencyContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText_settings_telephone"
+            android:layout_alignStart="@+id/editText_settings_telephone"
+            android:layout_centerVertical="true"
+            android:text="Emergency Contact Number" />
+
+
+    </RelativeLayout>
 
 </FrameLayout>
