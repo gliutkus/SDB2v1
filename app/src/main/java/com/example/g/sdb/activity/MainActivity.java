@@ -33,14 +33,13 @@ import fragment.HistoryFragment;
 import other.other.CircleTransform;
 
 public class MainActivity extends AppCompatActivity  {
-
+    //stating the variables that are going be used in this activity
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtWebsite;
     private Toolbar toolbar;
-
     private Button btnLock;
     private Button btnMic;
     private Button btnAlert;
@@ -75,10 +74,10 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar); //initiating the toolbar
         setSupportActionBar(toolbar);
 
-        mHandler = new Handler();
+        mHandler = new Handler();//handler hangles the navigation wiev selection
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -90,27 +89,6 @@ public class MainActivity extends AppCompatActivity  {
         txtWebsite = (TextView) navHeader.findViewById(R.id.website);
         imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
         imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
-
-
-/*
-        btnLock.findViewById(R.id.dashboard_btn_unlock);
-        btnAlert.findViewById(R.id.dashboard_btn_emergency);
-        btnMic.findViewById(R.id.dashboard_btn_microphone);
-        homeFragmentLayout.findViewById(R.id.dashboard_relative_layout);*/
-
-
-
-  /*      btnLock.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if (View.getId() == R.id.dashboard_btn_unlock) {
-                    Snackbar snackBar = Snackbar.make(homeFragmentLayout, "You have opened the door", Snackbar.LENGTH_SHORT);
-                    snackBar.show();
-                }
-
-            }
-        }*/
-
 
 
         // load toolbar titles from string resources
@@ -132,18 +110,6 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
-    /*if(view.getId()==R.id.dashboard_btn_unlock)
-    {
-        Snackbar snackBar = Snackbar.make(homeFragmentLayout,"You have opened the door",Snackbar.LENGTH_SHORT);
-        snackBar.show();
-    }*/
-
-    /*public void onClick(View view) {
-        if (view.getId() == R.id.dashboard_btn_unlock) {
-            Snackbar snackBar = Snackbar.make(homeFragmentLayout, "You have opened the door", Snackbar.LENGTH_SHORT);
-            snackBar.show();
-        }
-    }*/
 
     /***
      * Load navigation menu header information
@@ -162,6 +128,7 @@ public class MainActivity extends AppCompatActivity  {
                 .into(imgNavHeaderBg);
 
         // Loading profile image
+        //glide is an external librarry used for these actions
         Glide.with(this).load(urlProfileImg)
                 .crossFade()
                 .thumbnail(0.5f)
@@ -247,7 +214,7 @@ public class MainActivity extends AppCompatActivity  {
                 return new HomeFragment();
         }
     }
-
+    //method called for setting the selected fragment title that is going to be printed in the toolbar title
     private void setToolbarTitle() {
         getSupportActionBar().setTitle(activityTitles[navItemIndex]);
     }

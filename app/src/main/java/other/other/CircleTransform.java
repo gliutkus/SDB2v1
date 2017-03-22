@@ -12,6 +12,8 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 /**
  * Created by Lincoln on 10/03/16.
  */
+/*//this is an external transformation that is used for transforming a profile image
+    as a circular icon that is placed in the nav bar header*/
 public class CircleTransform extends BitmapTransformation {
     public CircleTransform(Context context) {
         super(context);

@@ -3,7 +3,9 @@ package fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -14,7 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.g.sdb.R;
@@ -23,6 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.io.IOException;
 
 import static com.example.g.sdb.R.layout.fragment_home;
 
@@ -49,13 +55,16 @@ public class HomeFragment extends Fragment {
     private ImageButton btnAlert;
     private VideoView piStream;
     private RelativeLayout homeFragmentLayout;
-    String PiURL = "rtsp://192.168.43.154:8554/";
+    private MediaPlayer mediaPlayer;
+    private MediaController mediaController;
+    private String src;
+    private VideoView videoView;
+    //String url = "http://www.ebookfrenzy.com/android_book/movie.mp4";
 
-
-
-
+    //refferencing the firebase database getting instance of the child and parent dabase entries
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mRootRef.child("Motor/state");
+//    DatabaseReference mConditionRefMic= mRootRef.child("")
 
 
     private OnFragmentInteractionListener mListener;
@@ -97,20 +106,28 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+        //stating that the root is the fragment home fragment
+        //it is done so that it would be possible to link the fragment components to their R value
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        final VideoView videoView =(VideoView)root.findViewById(R.id.dashboard_videoview);
-        homeFragmentLayout=(RelativeLayout)root.findViewById(R.id.dashboard_relative_layout) ;
-        btnLock = (ImageButton)root.findViewById(R.id.dashboard_btn_unlock);
-        btnAlert = (ImageButton)root.findViewById(R.id.dashboard_btn_emergency);
 
-        videoView.setVideoPath("http://www.ebookfrenzy.com/android_book/movie.mp4");
+        //stating the components
+        final VideoView videoView = (VideoView) root.findViewById(R.id.dashboard_videoview);
+        homeFragmentLayout = (RelativeLayout) root.findViewById(R.id.dashboard_relative_layout);
+        btnLock = (ImageButton) root.findViewById(R.id.dashboard_btn_unlock);
+        btnAlert = (ImageButton) root.findViewById(R.id.dashboard_btn_emergency);
+        btnMic=(ImageButton)root.findViewById(R.id.dashboard_btn_microphone);
+        src = "http://192.168.0.136:8090/"; //the ip for the pi stream
+        videoView.setVideoPath("http://www.ebookfrenzy.com/android_book/movie.mp4"); // this code was used for the testing while the live stream was not available
+        /*videoView.setVideoPath("http://192.168.0.136:8090/");
 
-        videoView.start();
+        videoView.start();*/
 
-
-
+        Uri UriSrc = Uri.parse(src);//parsing the url
+        videoView.setVideoURI(UriSrc);//setting that parsed url to the uri
+        mediaController = new MediaController(getActivity());
+        videoView.setMediaController(mediaController);
+        videoView.start();//starting the stream
 
         return root;
 
@@ -119,12 +136,12 @@ public class HomeFragment extends Fragment {
 
     public void onStart() {
         super.onStart();
-
+        //this is used for linking the firebase database between the variables and the parent directory
         mConditionRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
-            }
+            }//taken as a snapshot because the firebase connectivity transfers the variable in a snapshot form
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -132,12 +149,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        btnLock.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+            btnLock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mConditionRef.setValue("OPEN");
+                mConditionRef.setValue("UNLOCK");//the value that the button is linked to send to the DB
                 Snackbar snackBar = Snackbar.make(homeFragmentLayout, "You have opened the door", Snackbar.LENGTH_SHORT);
-                snackBar.show();
+                snackBar.show();//show the snackbar(alert message)
             }
         });
 
@@ -146,15 +167,22 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:112"));
-                startActivity(intent);
+                Intent intent = new Intent(Intent.ACTION_DIAL);//the button calls an intent for action dial
+                intent.setData(Uri.parse("tel:112"));//the phone number that is being called during an emergency
+                startActivity(intent);//starts the intent
 
             }
         });
 
+        //btnMic.setOnClickListener
+
+
+
 
     }
+
+
+
 
 
 
@@ -192,6 +220,9 @@ public class HomeFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
+
 
 
 

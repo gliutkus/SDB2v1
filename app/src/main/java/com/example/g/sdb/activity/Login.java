@@ -18,13 +18,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
-
+    //stating the variables that are going be used in this activity
     Button btnLogin;
     EditText input_email,input_password;
     TextView btnSignup,btnForgotPass;
 
     RelativeLayout activity_main;
-
+    //firebase (live database/server) authentication
     private FirebaseAuth auth;
 
     @Override
@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //View
+        //linking the views with the id's that are in the xml file
         btnLogin = (Button)findViewById(R.id.login_btn_login);
         input_email = (EditText)findViewById(R.id.login_email);
         input_password = (EditText)findViewById(R.id.login_password);
@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         btnForgotPass = (TextView)findViewById(R.id.login_btn_forgot_password);
         activity_main = (RelativeLayout)findViewById(R.id.activity_main);
 
+        //setting on click listener
         btnSignup.setOnClickListener(this);
         btnForgotPass.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
@@ -51,7 +52,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         if(auth.getCurrentUser() != null)
             startActivity(new Intent(Login.this, MainActivity.class));
     }
-
+    //setting onclick listeners that are going to take take them to the specified activities
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.login_btn_forgot_password)
@@ -69,7 +70,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             loginUser(input_email.getText().toString(),input_password.getText().toString());
         }
     }
-
+    //method that logs in the user, comparing it with the registered users and aproving it or throwing an error
     private void loginUser(String email, final String password) {
         auth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

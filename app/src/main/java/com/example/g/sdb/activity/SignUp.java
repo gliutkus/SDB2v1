@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
-
+    //stating the variables that are going be used in this activity
     Button btnSignup;
     TextView btnLogin,btnForgotPass;
     EditText input_email,input_pass;

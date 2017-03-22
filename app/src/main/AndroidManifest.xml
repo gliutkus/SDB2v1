@@ -20,7 +20,15 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".PrivacyPolicyActivity"></activity>
+
+
+
+
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
+
+
 </manifest>

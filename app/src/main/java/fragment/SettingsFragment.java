@@ -3,10 +3,14 @@ package fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.g.sdb.R;
 
@@ -27,6 +31,12 @@ public class SettingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button btnSave;
+    private EditText SilentHours;
+    private EditText EmergencyPhoneNo;
+    private EditText Autolock;
+    private LinearLayout settingsLayout;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +75,31 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View root = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        btnSave = (Button)root.findViewById(R.id.btn_settingsSave);
+        SilentHours = (EditText)root.findViewById(R.id.editText_settings_silentHours);
+        Autolock=(EditText)root.findViewById(R.id.editText_settings_autoLockTime);
+        EmergencyPhoneNo=(EditText)root.findViewById(R.id.editText_settings_telephone);
+        settingsLayout=(LinearLayout)root.findViewById(R.id.settingsFragment_layout);
+
+
+        return root;
+    }
+
+    public void onStart(){
+        super.onStart();
+
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar snackBar = Snackbar.make(settingsLayout, "Saved Succesfully", Snackbar.LENGTH_SHORT);
+                snackBar.show();
+            }
+        });
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
